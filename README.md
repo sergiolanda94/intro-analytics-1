@@ -1,2 +1,2 @@
 # intro-analytics
-Material for introductory data science course 
+Repository for introductory data science course 

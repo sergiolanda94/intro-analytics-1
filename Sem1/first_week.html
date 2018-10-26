@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Técnicas avanzadas de análisis</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Carlos S. Pérez" />
+    <meta name="date" content="2018-10-08" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Técnicas avanzadas de análisis
+## El pensamiento analítico
+### Carlos S. Pérez
+### 2018-10-08
+
+---
+
+
+
+
+class: center, middle
+
+# Carlos S. Pérez 
+
+&lt;!-- ### Matemáticas, Economía, Datos  --&gt;
+&lt;!-- ### +5 años experiencia --&gt;
+### Más información https://mx.linkedin.com/in/csampez
+
+---
+
+class: inverse, center, middle
+
+# Estructura del Curso
+
+---
+class: middle
+
+## Temas centrales
+
+- El pensamiento analítico 
+
+- Recolección y Almacenamiento de Datos
+
+- Exploración de Datos
+
+- Manipulación de Datos
+
+- Aprendizaje de Máquina
+
+- Selección de Modelos
+
+- *Documentación*: https://github.com/csampez/intro-analytics
+
+- **Evaluación**: Asistencia, Tareas, Proyecto Final
+
+---
+class:  middle
+
+## Software necesario
+
+- Anaconda https://www.anaconda.com/download/
+
+- Rstudio https://www.rstudio.com/products/rstudio/download/
+
+- Sublime https://www.sublimetext.com/3 (opcional)
+
+---
+
+class: inverse, center, middle
+
+# Panorama del análisis de datos
+
+---
+
+## Era Pre Industrial
+
+- 4000ac: Escritura cuneiforme en Sumeria.
+
+- 3000ac: Invención del ábaco en Sumeria, uso del papiro y primeros censos en Egipto.
+
+- 100 ac: Mecanismo Anticitera, Grecia primera computadora mecánica (analógica) para predecir posiciones astronómicas. 
+
+- 1000s: En el Islam, el astrolabio, primer dispositivo análogico que calcula la altura de un astro y primeras máquinas programables (mecanismos hidraúlicos y automátas musicales).
+
+- 1648: Paz de Westfalia, Gobiernos son organizados y mediciones requeridas dan impulso a la Estadística.
+
+- 1640: Blaise Pascal construye una dispositivo mecánico para sumar.
+
+- 1701: Leibnitz presenta su trabajo sobre el sistema binario.
+---
+## Era Industrial
+
+- 1801: Tarjetas perforadas controlan el telar de Joseph Marie Jacquard.
+
+- 1830s Charles Babbage describe su motor analítico, el primer diseño de una computadora moderna. Ada Lovelace diseña el primer algoritmo de computadora.
+
+- 1854: George Boole publica Boolean Algebra. 
+
+- 1890: Herman Hollerith procesa con tarjetas perforadas datos del censo de los Estados Unidos de América. 
+
+- 1895: Funda la compañía Tabulating Machine Company, la cual se fundirá en la Computing Tabulating Recording Corporation (CTR), luego renombrada IBM.
+---
+
+## Era de la Computación
+
+- 1940s: Turing y Good crean una máquina capaz de analizar documentos cifrados por los alemanes. Proyecto Manhattan consigue para analizar y predecir el comportamiento que podría causar una reacción nuclear en cadena. Se inventa el transistor en AT&amp;T Bell Labs.
+
+- 1950s: Solución al problema del camino más corto mediante la analítica computacional y modelos predictivos para las decisiones en los riesgos de créditos. 
+
+- 1960s: John Tukey escribe “The Future of Data Analysis” en el cuál anticipa una fusión entre Computación y Estadística. DARPA crea ARPAnet, la primera red operacional de computadoras, ancestro de Internet.
+---
+
+## Era de los Datos
+
+- 1970s: Se vende la primera computadora personal. Se usa el modelo Black-Scholes para predecir el precio óptimo de las acciones en el futuro. Peter Naur publica "Concise Survey of Computer Methods" en el que se usa de forma libre el término "data science".
+
+- 1990: Sir Tim Berners Lee de CERN inventa la World Wide Web.
+
+- 1995: Se lanzan las eBay y Amazon, el comienzo de la carrera para la personalización de las experiencias online.
+
+- 1998: Google desarrolla algoritmos que se centran en la relevancia para los motores de búsqueda.
+
+- 2008: El término “data scientist” masificado por ChiefOfficers de Facebook y LinkedIn. Supercomputadora Roadrunner de IBM alcanza la velocidad de 1 petaflop.
+
+- 2013: IBM muestra que el 90% de los datos del mundo se ha creado en los últimos dos años.
+
+- 2015: Springer lanza el *International Journal on Data Science and Analytics*. 
+
+---
+
+![](first_week_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+
+.pull-left[Elephant Clock, Ismail al-Jazari 1206]
+---
+class: inverse, center, middle
+
+# Perfiles y Herramientas
+
+---
+class: center, middle 
+
+## ¿Qué es Ciencia de Datos?
+
+![](first_week_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+.center[Diagramas de Venn: Drew Conway (2010)]
+
+
+
+
+---
+
+
+class: center, middle 
+
+## ¿Quiénes la practican?
+
+![](first_week_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+.center[https://365datascience.com/]
+
+---
+
+class: center, middle 
+
+## ¿Qué habilidades tienen?
+
+![](figs/skillsorreily.png)
+
+.smallcap[Analyzing the Analyzers: An Introspective Survey of Data Scientists and Their Work, O’Reilly 2013]
+
+---
+
+class: center, middle 
+
+## ¿Qué tipos hay?
+
+![](first_week_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+.center[Analyzing the Analyzers]
+
+
+
+---
+class: center, middle
+
+## ¿Qué tipos hay?
+
+![](first_week_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+.center[Towards Data Science]
+
+
+
+---
+
+class: center, middle 
+
+## ¿Qué lenguajes usan?
+
+![](figs/lenguajes.png)
+
+.center[Infografía de 365datascience.com con base en perfiles de LinkedIn ]
+
+&lt;!-- --- --&gt;
+
+&lt;!-- class: center, middle  --&gt;
+
+&lt;!-- https://www.stitchdata.com/resources/the-state-of-data-science --&gt;
+
+&lt;!-- ![](figs/ds1.png) ![](figs/ds2.jpeg) --&gt;
+
+&lt;!-- .left[Caption1.] .right[Caption2] --&gt;
+
+---
+
+class: center, middle 
+
+## ¿Cómo se relaciona la madurez con las habilidades?
+
+![](figs/skillsacross.png)
+
+.center[https://www.stitchdata.com/resources/the-state-of-data-science/]
+
+---
+
+class: center, middle 
+
+## ¿Qué tipos de análisis hacen?
+
+![](first_week_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+.center[Gartner (2017)]
+
+&lt;!-- --- --&gt;
+
+&lt;!-- class: center, middle  --&gt;
+
+&lt;!-- ## ¿Cómo se estructuran los proyectos? --&gt;
+
+&lt;!-- ![](figs/needs.png) --&gt;
+
+&lt;!-- .center[https://hackernoon.com] --&gt;
+
+---
+class: center
+
+## ¿Qué método utilizan?
+
+![Caption](first_week_files/figure-html/unnamed-chunk-7-1.png)
+
+&lt;!-- ![](figs/crisp.png){height=100px} --&gt;
+
+.center[Cross Industry Standard Process for Data Mining, 1996]
+
+&lt;!-- --- --&gt;
+&lt;!-- class: center, middle, inverse --&gt;
+
+&lt;!-- ## ¿Cómo se ve la especialización? --&gt;
+
+
+&lt;!-- ```{r fig.width=10, fig.height=6,echo=FALSE, fig.cap="Caption"} --&gt;
+&lt;!-- img &lt;- readPNG("figs/RoadToDataScience.png") --&gt;
+&lt;!-- grid.raster(img) --&gt;
+&lt;!-- ``` --&gt;
+
+&lt;!-- .center[Road To Data Science] --&gt;
+
+&lt;!-- --- --&gt;
+
+
+---
+class: middle, center
+
+## ¿Cuál es el ciclo de los productos de datos?
+
+![Caption](first_week_files/figure-html/unnamed-chunk-8-1.png)
+
+&lt;!-- ![](figs/crisp.png){height=100px} --&gt;
+
+.center[Data Analytics Lifecycle, UC Berkeley]
+
+
+
+---
+
+background-image: url('figs/cartoon-data-scientist-sexy-robot.jpg')
+ 
+&lt;!--url(http://www.bigdata-madesimple.com/wp-content/uploads/2015/01/human-resource.gif)--&gt;
+
+---
+
+class: inverse, center, middle 
+
+# Productos de Datos y Propuestas de Valor
+
+---
+
+class: middle 
+
+## Metodologías de productos de datos 
+
+- Inspiradas en el desarrollo de software de los 1990s
+
+- Existen muchas, un espectro variado desde Waterfall hasta Agile.
+
+- Agile nace en 1995 en contraposición a las metodologías tradicionales. 
+
+- Scrum, Extreme programming (XP), Feature Driven Development (FDD) son ejemplos del enfoque de desarrollo Agile.
+
+---
+
+class: center, middle 
+
+## Comparación entre opuestos (recursos)
+
+![Caption](first_week_files/figure-html/unnamed-chunk-9-1.png)
+
+.center[Project Management Institute]
+
+---
+class: center, middle 
+
+## Comparación entre opuestos (marco temporal)
+
+![Caption](first_week_files/figure-html/unnamed-chunk-10-1.png)
+
+.center[Project Management Institute]
+
+---
+
+class: middle 
+
+## Mecánica del Negocio
+
+- Definir una propuesta de valor y crear un argumento que fundamenta tu producto, en el cual explicas la población objetivo y el beneficio para el cliente. 
+
+- Elegir cuáles serán las métricas de desempeño y asignar objetivos claros para dar seguimiento al proyecto, e.g. % adopción de una solución.
+
+- Habilitar y entrenar al equipo de ventas para que conozca el producto y pueda comunicar el valor al cliente.
+
+- Se produce valor de forma iterativa a través de innovación, exploración, prototipado y refinamiento.
+---
+class: middle
+
+## Productos modernos con analítica inmersa 
+
+.pull-left[
+- Facebook
+
+- Spotify
+
+- Twitter 
+
+- Vimeo
+
+- Medium
+
+- Eventbrite
+
+- Yelp
+]
+
+
+.pull-right[
+- Google
+
+- Airbnb
+
+- LinkedIn
+
+- Amazon 
+
+- Paypal
+
+- Foursquare
+
+]
+
+---
+class: middle
+
+## Big Data = Big Advantage
+
+- Datos es una industria de $300 billones de doláres al año, analítica sobre el cliente permite identificar nuevos leads, anticipar el comportamiento y hacer recomendaciones para marketing  
+
+- Big Data será la próxima frontera de la innovación y las ganancias en productividad
+
+- Enormes brecha en el mercado laboral demanda por 140k-190k profesionales con “deep analytic talent” y 1.5 millones de “data-savvy professionals". 
+
+.footnote[McKinsey Global Institute (2012)]
+
+---
+
+## ¿Qué es Big Data?
+
+- Uso del término comienza en los 1990s para designar conjuntos de datos con tamaños no manejables por software convencional.
+
+- Originalmente asociado con los conceptos clave Volumen, Variedad y Velocidad.
+
+- Plantea retos en términos de captura, almacenamiento, transferencia, análisis y visualización.  
+
+&lt;!-- ![](figs/crisp.png){height=100px} --&gt;
+
+.footnote[A Very Short History of Big Data, Gil Press]
+
+---
+
+
+background-image: url('figs/would-not-hire.gif')
+
+.footnote[KDD nuggets]
+
+ 
+&lt;!--url(http://www.bigdata-madesimple.com/wp-content/uploads/2015/01/human-resource.gif)--&gt;
+
+---
+
+class: inverse, center, middle 
+
+# Formulación de problemas 
+
+---
+class: middle
+
+## Entendimiento del problema 
+
+- Usualmente pertenecen a optimizacción o inferencia para la toma de decisiones. 
+
+- Los más comúnes son regresión y clasificación, reconocimiento de patrones y sistemas de recomendación
+
+- Diversas técnicas y métodos se aplican dependiendo del planteamiento del problema
+
+- Entrevistas ayudan a determinar cuáles son los recursos disponibles e identificar actores clave. 
+
+---
+
+class: middle
+
+## Preguntas fundamentales para definir el problema 
+
+- ¿Cuál es la unidad de análisis?
+
+- ¿Cuál es la población de interés?
+
+- ¿Cómo es una muestra?
+
+- ¿Cuál es resultado? ¿Cómo es su escala? ¿Cuál es la información disponible?
+
+- ¿Cuál es el marco temporal?
+
+- ¿Cómo se medirá el éxito? 
+
+.footnote[discoverycorps.com]
+---
+class: middle
+
+## Más preguntas con mente en el negocio
+
+- ¿Quién es tu cliente? ¿Qué es lo que necesita? 
+
+- ¿Qué te esta pidiendo? ¿Se puede traducir a un problema bien definido?
+
+- ¿Quienes son sus clientes? ¿Cómo los identificas?
+
+- ¿Cómo recolectas información sobre los mismos?
+
+En términos prácticos 'framing' es un proceso iterativo de descubrimiento y refinamiento con el cliente. 
+
+---
+class: middle
+
+## Preguntas pensando en la solución
+
+- ¿La solución es un modelo o una plataforma?
+
+- ¿Cuál es el producto mínimo viable?
+
+- ¿Qué datos necesito? 
+
+- ¿Están disponibles? ¿Me ayudan a resolver el problema?
+
+- ¿Son suficientes? ¿Cómo es la calidad?
+
+---
+class: middle
+
+## La comprensión es clave
+
+*Desarrollar una solución para reducir la tasa de criminalidad de una ciudad*
+
+--
+
+Es un problema muy general ya que puede significar:  
+
+- Disminuir la tasa de criminalidad en areas con la mayor tasa 
+
+- Disminuir la tasa de criminalidad del tipo más común
+
+- Disminuir la tasa de criminalidad global
+
+
+---
+class: middle
+
+## Lab: Formulación de Problemas
+
+- Tres problemas de interés bien definidos
+
+- Tres productos de analítica como solución 
+
+---
+
+## Referencias y más ...
+
+- Breiman, Leo. 2001. “Statistical Modeling: The Two Cultures.” Statistical Science 16 (3): 199–215. doi:10.2307/2676681.
+
+- Donoho, David. n.d. “50 Years of Data Science.” Based on a presentation at the Tukey Centennial workshop, Princeton NJ Sept 18 2015.
+
+- Grimmer, Justin. 2015. “We Are All Social Scientists Now: How Big Data, Machine Learning, and Causal Inference Work Together.” PS: Political Science &amp; Politics 48 (1): 80–83. doi:10.1017/S1049096514001784.
+
+- Helbing, Dirk. 2016. “Society 4.0: Upgrading Society, but How?”, Helbing, D, and E Pournaras. 2015. “Build Digital Democracy.” Nature 527: 33–34. doi:10.1038/527033a.
+
+- McKinsey &amp; Co. (2011) Big Data: The next frontier for innovation, competition, and productivity. McKinsey Global Institute Report(May).  Retrieved April 28, 2014
+
+---
+
+## Referencias y más ...
+
+- MIT Sloan Management Review (1996) “The Design and Development of Information Products.”
+
+- Stephens, Christopher R., and R. Sukumar. 2006. “An Introduction to Data Mining.” Handbook of Marketing Research. doi:dx.doi.org/10.4135/9781412973380.n22.
+
+- Shearer C., el modelo CRISP-DM: el nuevo plan para la minería de datos, almacenamiento de los datos J (2000); 5:13-22.
+
+- Salkever A (2015) Data science degrees—Analyzed and visualized. Retrieved August 18, 2015
+
+- Sayad S (2015) An introduction to data mining. Accessed August 18, 2015
+
+---
+class: center, bottom, inverse
+background-image: url('figs/RoadToDataScience.png')
+background-size: 90%
+
+---
+
+class: center, middle
+
+# Gracias!
+
+Slides creadas vía R package [**xaringan**](https://github.com/yihui/xaringan).
+
+The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

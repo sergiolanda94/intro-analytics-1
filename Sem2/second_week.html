@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Técnicas avanzadas de análisis</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Carlos S. Pérez" />
+    <meta name="date" content="2018-10-15" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Técnicas avanzadas de análisis
+## Recolección y Almacenamiento de Datos
+### Carlos S. Pérez
+### 2018-10-15
+
+---
+
+
+
+
+class: inverse, center, middle
+
+# Documentación
+###  https://github.com/csampez/intro-analytics/Sem2
+
+---
+
+
+class: inverse, middle, center
+
+## Datos estructurados y no estructurados
+
+---
+
+class: middle
+
+## Las V's del *Big data*
+
+- Volumen: Tamaño de los datos generados y almacenados.
+- Variedad: Tipo y naturaleza de los datos.
+- Velocidad: Generación de los datos.
+- Veracidad: Calidad y confianza de los datos.
+
+.footnote[Hilbert, Martin. "Big Data for Development: A Review of Promises and Challenges"]
+
+---
+
+class: center, middle
+
+## Continuo de Datos
+
+![](second_week_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+.center[]
+
+---
+
+class: center, middle
+
+## Crecimiento de Datos
+
+![](second_week_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+.center[]
+
+---
+
+class: middle
+
+## Datos No Estructurados 
+
+.pull-left[
+Data generada por humanos
+
+- **Texto**: Hojas de Cálculo, Presentaciones, Emails, Logs.
+- **Social Media**: Facebook, Twitter, LinkedIn.
+- **Websites**: YouTube, Instagram
+- **Mobile data**.
+- **Media**: MP3, Fotos, Audio, Video.
+- **Aplicaciones**: Documentos Office, PDFs, etc.
+]
+
+.pull-right[
+Data generada por máquinas
+
+- **Imágenes por Satélite**: Weather data, land forms, military movements.
+- **Dispositivos Científicos**: Exploration en gas y petróleo, exploración espacial, datos atmosféricos y sísmicos.
+- **Supervisión Digital**: Foto y Video
+- **Sensores**: Tráfico, Clima, información oceanográfica.
+
+]
+---
+
+class: center, middle
+
+## Estructurados vs No Estructurados
+
+![](second_week_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+.center[]
+
+
+---
+
+class: inverse, center, middle
+
+# Arquitectura de Datos
+
+---
+
+class: center, middle
+
+## ¿Qué es la Arquitectura de Datos?
+
+La arquitectura de datos es un ecosistema compuesto por modelos, políticas, reglas o estándares que gobiernan qué datos son recolectados, cómo se almacenan, organizan e integran y cómo se explotan en los sistemas y organizaciones.
+
+---
+
+class: center, middle
+
+## Arquitectura de Referencia
+
+![](second_week_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+.center[The application of big data in the management of healthcare organizations. A review of selected practical solutions, 2015]
+
+---
+
+class: center, middle
+
+## Arquitectura de Referencia 2
+
+![](second_week_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+.center[]
+
+---
+class: center, middle
+
+## Arquitectura de Referencia 3
+![](second_week_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+.center[]
+
+---
+
+class: center, middle
+
+background-image: url('figs/data-accuracy.gif')
+background-size: 80%
+
+---
+
+class: inverse, center, middle 
+
+## Gobernanza de Datos
+
+---
+
+class: middle
+
+## Definiciones ...  
+
+Here’s a short definition of Data Governance:
+
+*Data Governance is the exercise of decision-making and authority for data-related matters.*
+   
+Here’s a bit longer definition:
+
+*Data Governance is a system of decision rights and accountabilities for information-related processes, executed according to agreed-upon models which describe who can take what actions with what information, and when, under what circumstances, using what methods.*
+
+---
+
+class: middle
+
+## Objetivos típicos 
+
+- Mejorar la toma de decisiones al incrementar consistencia y confianza de los datos.
+- Reducir la fricción operativa y riesgos regulatorios.
+- Proteger las necesidades de datos de la empresa
+- Provisión de seguridad y medios de distribución.
+- Entrenar staff y administrativos a adoptar estrategias comunes para los issues de datos.
+- Contruir procesos estándarizados y reproducibles.
+- Reducir costos (maximizar ganancias) e incrementar la efectividad a través de esfuerzos coordinados.
+- Asegurar la transparencia de los procesos.
+
+.footnote[Data Governance Institute]
+
+---
+
+class: middle 
+
+## Principios 
+
+Ayudan a lo agentes a resolver distintos tipos de conflictos relacionados con datos
+
+- Integridad
+- Transparencia
+- Auditabilidad
+- Rendición de cuentas
+- Stewardship (Protección)
+- Controles y contrapesos
+- Estandarización
+- Cambio en administración
+
+Áreas clave: disponibilidad, usabilidad, consistencia, integridad, seguridad, auditabilidad
+
+.footnote[Data Governance Institute]
+
+---
+
+class: middle
+
+## ¿Cómo se ve?
+
+![Caption](second_week_files/figure-html/unnamed-chunk-7-1.png)
+
+&lt;!-- ![](figs/crisp.png){height=100px} --&gt;
+
+.footnote[Gobernanza de Datos]
+
+---
+
+
+class: middle 
+
+## Consecuencias de la Gobernanza
+
+Es un concepto de gestión de datos que refleja la capacidad de asegurar que existe una alta calidad de datos a través del ciclo de vida de los datos. 
+
+Nuevos roles: **Data Steward**
+
+Asegura que los procesos de gobernanza sean tengan seguimiento, y recomienda mejoras.
+
+.footnote[
+- "What is Data Governance? - LightsOnData". LightsOnData. 2018-01-29. Retrieved 2018-05-14, 
+- Gianni, D., (2015, Jan). Data Policy Definition and Verification for System of Systems Governance, in Modeling and Simulation Support for System of Systems Engineering]
+
+---
+
+## Nuevos Roles debido a la Gobernanza
+
+![Caption](second_week_files/figure-html/unnamed-chunk-8-1.png)
+
+.footnote[Lyon &amp; Brenner (2015) IJDC http://www.nationaldataservice.org/get_involved/events/NDS6/pdfs/lyon.pdf]
+
+---
+
+## Roles Explicado
+
+![Caption](second_week_files/figure-html/unnamed-chunk-9-1.png)
+.footnote[Lyon et al (2016)]
+
+---
+
+class: inverse, center, middle 
+
+# Protocolos de Comunicación Web
+
+---
+
+class: middle 
+
+## Protocolo de comunicación 
+
+Un protocolo de comunicación es un sistema de reglas que permite que dos o más entidades de un sistema de comunicaciones transmitan información a través de cualquier tipo de variación de una cantidad física.
+
+El protocolo define las reglas, la sintaxis, la semántica y la sincronización de la comunicación y los posibles métodos de recuperación de errores. Los protocolos pueden implementarse mediante hardware, software o una combinación de ambos.
+
+---
+class: middle 
+
+## API (Application Programming Interface)
+
+La interfaz de programación de aplicaciones (API) es un conjunto de definiciones de subrutinas, protocolos de comunicación y herramientas para crear software.
+
+Una API puede ser para un sistema basado en web, sistema operativo, sistema de base de datos, hardware de computadora o biblioteca de software.
+
+Una especificación de API puede tomar muchas formas, pero a menudo incluye especificaciones para rutinas, estructuras de datos, clases de objetos, variables o llamadas remotas.
+
+---
+
+class:middle 
+
+## Diversas APIs
+
+- Libraries and frameworks: R, Python, JavaScript, ...
+- Operating systems: POSIX, UNIX
+- Remote APIs: Java Virtual Machine 
+- Web APIs: Twitter
+
+---
+
+class: middle
+
+## Diseño de APIs 
+
+Se define normalmente como un conjunto de especificaciones, por ejemplo
+
+- Los mensajes de solicitud del Protocolo de transferencia de hipertexto (HTTP), junto con una definición de la estructura de los mensajes de respuesta, generalmente en un formato de lenguaje de marcado extensible (XML) o notación de objetos de JavaScript (JSON).
+
+- El diseño de una API tiene un impacto significativo en su uso. El principio de ocultar la información describe el papel de las interfaces de programación como habilitación de la programación modular al ocultar los detalles de la implementación de los módulos, de modo que los usuarios de los módulos no tengan que comprender la complejidad.
+
+---
+
+class: center, inverse, middle
+
+## Semántica para la manipulación de Datos
+
+---
+
+class: middle
+
+## ¿Cómo nos comunicamos con las bases de datos?
+
+El lenguaje de consulta estructurado (SQL) es un lenguaje de programación diseñado para administrar datos almacenados en bases de datos relacionales. 
+
+SQL opera a través de declaraciones simples, declarativas. Esto mantiene la precisión y seguridad de los datos, y además ayuda a mantener la integridad de las bases de datos independientemente del tamaño.
+
+---
+
+class: middle
+
+## Paradigma **CRUD** 
+
+Create, Read, Update, and Delete (CRUD) son las cuatro funciones básicas del almacenamiento persistente, es decir las principales funciones implementadas en aplicaciones de bases de datos relacionales. Cada verbo puede ser mapeado a un declarativa de SQL o bien a los verbos del protocolo de transferencia de hipertexto (HTTP), el cual es típicamente usado para construir APIs tipo RESTful o también a las operaciones de Servicios de Distribución de Datos (DDS).
+
+![](second_week_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+.center[Wiki]
+
+---
+
+class: inverse, center, middle 
+
+# Web Scrapping 
+
+---
+
+class: middle
+
+## ¿Qué es?
+
+El "scrapeo" web es una técnica para convertir los datos presentes en formato no estructurado (etiquetas HTML) a través de la web al formato estructurado al que se puede acceder y utilizar fácilmente.
+
+---
+
+## ¿Cómo se hace?
+
+- Human Copy-Paste
+
+- Text pattern matching
+
+- API Interface
+
+- Parsing DOM 
+
+---
+
+class:  inverse, middle
+
+## Laboratorio Web Scrapping
+
+---
+
+
+```r
+#Cargar la librería
+library(rvest)
+```
+
+```
+## Loading required package: xml2
+```
+
+```r
+#Definir URL ()
+url &lt;- 'http://www.imdb.com/search/title?count=100&amp;release_date=2016,2016&amp;title_type=feature'
+
+#Leer el código html
+webpage &lt;- read_html(url)
+```
+
+---
+
+
+```r
+#Usar selectores CSS para scrapear la seccion de rank
+rank_data_html &lt;- html_nodes(webpage,'.text-primary')
+
+#Convertir a texto
+rank_data &lt;- html_text(rank_data_html)
+
+#Imprimir los ranks
+head(rank_data)
+```
+
+```
+## [1] "1." "2." "3." "4." "5." "6."
+```
+
+```r
+##Convertir a Numero
+rank_data&lt;-as.numeric(rank_data)
+```
+
+---
+
+
+```r
+#Usar selectores CSS para scrapear la seccion de título
+title_data_html &lt;- html_nodes(webpage,'.lister-item-header a')
+
+#convertir a texto
+title_data &lt;- html_text(title_data_html)
+
+#Veamos los titulos
+head(title_data)
+```
+
+```
+## [1] "Deadpool"                                 
+## [2] "Escuadrón Suicida"                        
+## [3] "Fragmentado"                              
+## [4] "X-Men: Apocalipsis"                       
+## [5] "Animales fantásticos y dónde encontrarlos"
+## [6] "Sing: ¡Ven y canta!"
+```
+
+---
+
+
+```r
+#Usar selectores CSS para scrapear la seccion de descripción
+description_data_html &lt;- html_nodes(webpage,'.ratings-bar+ .text-muted')
+
+#Convertir a texto
+description_data &lt;- html_text(description_data_html)
+
+#Veamos las descripciones
+head(description_data)
+```
+
+```
+## [1] "\n    A fast-talking mercenary with a morbid sense of humor is subjected to a rogue experiment that leaves him with accelerated healing powers and a quest for revenge."                                                             
+## [2] "\n    A secret government agency recruits some of the most dangerous incarcerated super-villains to form a defensive task force. Their first mission: save the world from the apocalypse."                                           
+## [3] "\n    Three girls are kidnapped by a man with a diagnosed 23 distinct personalities. They must try to escape before the apparent emergence of a frightful new 24th."                                                                 
+## [4] "\n    After the re-emergence of the world's first mutant, the world-destroyer Apocalypse, the X-Men must unite to defeat his extinction level plan."                                                                                 
+## [5] "\n    The adventures of writer Newt Scamander in New York's secret community of witches and wizards seventy years before Harry Potter reads his book in school."                                                                     
+## [6] "\n    In a city of humanoid animals, a hustling theater impresario's attempt to save his theater with a singing competition becomes grander than he anticipates even as its finalists' find that their lives will never be the same."
+```
+
+---
+
+
+```r
+#Usar selectores CSS para scrapear la seccion de rating
+rating_data_html &lt;- html_nodes(webpage,'.ratings-imdb-rating strong')
+
+#Convertir a texto
+rating_data &lt;- html_text(rating_data_html)
+
+#Veamos los ratings
+head(rating_data)
+```
+
+```
+## [1] "8.0" "6.1" "7.3" "7.0" "7.4" "7.1"
+```
+
+---
+
+class: middle
+
+## Tarea 
+
+- Obtener campos de interés restantes: Rank, Title, Description, Runtime, Genre, Rating, Metascore, Votes, Gross_Earning_in_Mil, Director, Actor
+- Revisar uso de librería *dplyr*
+- Guardar información en un formato estructurado (dataframe)
+
+---
+
+class: center, bottom, inverse
+background-image: url('figs/bigdata2016.png')
+background-size: 90%
+
+---
+
+class: center, middle
+
+# Gracias!
+
+Slides creadas vía R package [**xaringan**](https://github.com/yihui/xaringan).
+
+The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

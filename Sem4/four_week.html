@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Técnicas avanzadas de análisis</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Carlos S. Pérez" />
+    <meta name="date" content="2018-10-29" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Técnicas avanzadas de análisis
+## Manipulación de Datos
+### Carlos S. Pérez
+### 2018-10-29
+
+---
+
+
+
+
+
+---
+
+class: inverse, center, middle
+
+# Documentación
+###  https://github.com/csampez/intro-analytics/Sem4
+
+---
+
+class: inverse, middle, center
+
+# Data Wrangling
+
+---
+
+class: middle
+
+## Data Wrangling/Munging 50%-80% del tiempo
+
+- Preprocesamiento 
+  - Scraping (Extracción)
+  - Limpieza (Remover)
+  - Edición (Corregir)
+- Fusión / Integración
+- Preparación
+
+.footnote[https://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html]
+
+---
+
+class: middle
+
+## ¿Cómo se realiza? 
+
+- Descubrimiento de variables y observaciones 
+- Derivar nuevas variables para explorar
+- **Reshape** layout según propósito  
+- Combinar (join) distintos *datasets*
+- Usar resúmenes grupales para explorar niveles ocultos de información 
+
+.footnote[Data Wrangling Sheet, https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf]
+---
+
+class: middle
+
+## *Tidy* Dataset
+
+&lt;img src="four_week_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+
+.footnote[H. Wickham, *R for Data Science*, 2017, https://r4ds.had.co.nz/tidy-data.html] 
+
+---
+
+class: middle
+
+## Transformaciones básicas: **gather**
+
+![](four_week_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+.footnote[Más operaciones https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf] 
+
+---
+
+class: middle
+
+## Transformaciones básicas: **spread**
+
+&lt;img src="four_week_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+.footnote[Otros recursos https://www.rstudio.com/resources/cheatsheets/] 
+
+---
+
+class: inverse, middle, center
+
+# Feature Engineering
+
+---
+
+class: middle
+
+## Minería de Datos
+
+- Nivel avanzado de exploración
+- El poder de la inteligencia: Technical vs Analytical 
+- ¿Qué factores influyen? ¿Cómo es la relación?
+
+.footnote[Ejemplo https://www.kaggle.com/haynakozo/r-feature-engineering-binning]
+
+
+---
+
+class: middle
+
+## Feature Discovery
+
+- Importante apoyo en GEDA (graphical exploratory analysis)
+- Uso de transformaciones lineales (e.g. centrado, reducido)
+- Uso de transformaciones no lineales (e.g. logaritmo, discretización)
+- Otras técnicas de *feature extraction* (e.g. PCA, CNN)
+
+.footnote[Algunos ejemplos https://www.analyticsvidhya.com/blog/2016/02/complete-tutorial-learn-data-science-scratch/#four]
+
+---
+
+class: inverse, middle, center
+
+# Feature Selection
+
+---
+
+class: middle
+
+## ¿Qué es?
+
+- Encontrar `\(X\)` el 'mejor' conjunto de variables que explican `\(y\)`
+- Es una parte clave en la fase de ingeniería de variables con miras al modelado.
+- Buscar balance entre complexidad y desempeño
+- Navaja de Occam: Modelos simples son mejores
+
+---
+
+class: middle
+
+## Transformaciones básicas: **spread**
+
+&lt;img src="four_week_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+.footnote[Medium https://medium.com/greyatom/what-is-underfitting-and-overfitting-in-machine-learning-and-how-to-deal-with-it-6803a989c76] 
+
+---
+
+class: middle
+
+#¿Por qué?
+
+- Habilita un uso eficiente de algoritmos  de machine learning (mejora el entrenamiento) 
+
+- Reduce la complejidad del modelo lo cual lo hace más fácil de interpretar
+
+- Mejora la precisión de un modelo si el conjunto es el indicado
+
+- Reduce el sobreajuste
+
+---
+
+class: middle
+
+## Métodos 
+
+- **Filter Methods**: Rank de features o subconjunto de features independientemente de un modelo
+
+- **Wrapper Methods**: Rank de features o subconjunto de features condicional en un modelo 
+
+- **Embedded Methods**: Combina ambos métodos, usualmente penalizan el sobreajuste 
+
+---
+
+class: middle 
+
+## **Filter Methods**
+
+&lt;img src="four_week_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+
+Usan una medida de dependencia para evaluar la relevancia de los predictores
+
+---
+
+class: middle 
+
+## **Filter Methods**
+
+ `\(X/y\)`| Continua | Categórica
+ ------------|----------|--------
+ **Continua** |Pearson's Correlation | LDA 
+ **Categórica** | ANOVA| Chi-Square 
+
+
+- **Pearson's Correlation**: cuantifica la dependencia *lineal* entre variables.
+
+- **LDA**: *Linear discriminant analysis*: encuentra una combinación lineal que separe las clases de una variable categórica.
+
+- **ANOVA**: *Analysis of variance*: análogo al LDA pero con independientes categóricas y una dependiente continua. Test de diferencia de medias entre grupos.
+
+- **Chi-Square**: Test estadístico evalúa asociacion a través de su distribución de frecuencias.
+
+---
+
+class: middle
+
+## **Wrapper Methods**
+
+&lt;img src="four_week_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+
+Son algoritmos de búsqueda que optimizan el desempeño del modelos usando los predictores
+
+- **Forward Selection**: Empiezo con `\(\{\emptyset\}\)`
+- **Backward Selection**: Empiezo con `\(2^{X}\)` 
+
+---
+
+class: middle
+
+##  **Embedded Methods**
+
+&lt;img src="four_week_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+- **Regresión Lasso** (regularización L1) agrega penalización a `\(|\beta_k|\)`
+
+- **Regresión Ridge** (regularización L2) agrega penalización a `\(|\beta_k|^2\)`
+
+---
+
+class:  inverse, middle
+
+## Laboratorio *Feature Engineering and Feature Selection*
+
+---
+
+class: center, middle
+
+# Gracias!
+
+Slides creadas vía R package [**xaringan**](https://github.com/yihui/xaringan).
+
+The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

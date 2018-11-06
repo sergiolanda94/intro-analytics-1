@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Técnicas avanzadas de análisis</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Carlos S. Pérez" />
+    <meta name="date" content="2018-10-29" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Técnicas avanzadas de análisis
+## Aprendizaje de Máquina
+### Carlos S. Pérez
+### 2018-10-29
+
+---
+
+
+
+
+
+---
+
+class: inverse, center, middle
+
+# Documentación
+###  https://github.com/csampez/intro-analytics/Sem5
+
+---
+
+class: inverse, middle, center
+
+# Machine Learning
+
+
+
+.left[*All models are wrong, the practical question is how wrong do they have to be to not be useful*]
+.right[-George Box, 1987]
+
+---
+
+class: middle
+
+## ¿Qué es?
+
+- Subcampo de las Ciencias Computacionales
+
+- Rama de la Inteligencia Artificial
+
+- Se centra en un proceso inducción del conocimiento 
+
+- Útil saber distinguir los distintos *Aprendizajes*
+
+.footnote[ML ref]
+
+---
+
+class: middle
+
+## Relación con otras ramas
+
+&lt;img src="fifth_week_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+
+.footnote[Ubicación de ML el espectro de DS] 
+
+---
+
+class: middle
+
+## ¿Cuál es el objetivo? 
+
+- Desarrollar técnicas que permiten que las computadoras aprendan
+
+- Crear programas capaces de generalizar respuestas a partir de información suministrada
+
+- Usualmente resulta en el algoritmo que permite hacer esta inducción 
+
+.footnote[ML ref]
+
+---
+
+class: middle
+
+## Una definición formal
+
+*"A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.""*
+
+.footnote[Mitchell TM (1997) Machine learning. McGraw-Hill, New York]
+
+---
+
+class: middle
+
+## Elementos Generales del Aprendizaje
+
+- Problemática o pregunta de negocio a responder ¿? 
+
+- Variables o *features*, representados por columnas `\(X = (X^j)_{j=1}^p\)` y `\(y=(y_i)_{i=1}^n\)` para el resultado
+- Observaciones, representados por renglones `\(X_i\)` 
+
+- Modelo o Representación del fenómeno
+    - Forma funcional que describe la hipótesis `\(y_i = F(X_i | \theta)\)`
+    
+    - Función de pérdida a optimizar `\(G(y,F(x) | \theta )\)`
+
+- Algoritmo de aprendizaje set of instructions which is required to be understood by a computer so that it can learn from data.
+
+- Método de aproximación / optimización (*e.g.* Descenso del Gradiente)
+
+- Métricas de validación y desempeño (*e.g.* Disminuir Falsos Positivos)
+
+---
+
+class: middle
+
+## Aprendizaje es *Task-driven* 
+
+Resultado | Supervisado | No supervisado
+ ------------|----------|--------
+ **Continua** | Regresión | Factorización 
+ **Categórica** | Clasificación | Segmentación 
+
+&lt;img src="fifth_week_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: middle
+
+## Tipos de Aprendizaje
+
+&lt;img src="fifth_week_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+.footnote[Jerarquía ML con ejemplo de algoritmo] 
+
+---
+
+class: middle
+
+## Comparación del proceso
+
+&lt;img src="fifth_week_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+.footnote[Jerarquía ML con ejemplo de algoritmo] 
+
+
+---
+
+class: middle
+
+## Otros Aprendizajes
+
+- Reinforcement Learning o Aprendizaje por Refuerzo
+
+- Deep Learning o Aprendizaje Profundo
+
+- Online Learning o Aprendizaje en Línea
+
+- Ver más en [wiki](https://en.wikipedia.org/wiki/Outline_of_machine_learning)
+
+---
+
+class: middle
+
+## Algunas aplicaciones 
+
+Motores de búsqueda, diagnósticos médicos, detección de fraude en bancos, análisis del mercado de valores, clasificación de secuencias de ADN, reconocimiento del habla y del lenguaje escrito, juegos y robótica.
+
+---
+
+class: inverse, middle, center
+
+## Aprendizaje No Supervisado
+
+---
+
+## Características Principales
+
+- Más subjetivo ya que no existe un objetivo simple
+
+- No es *task* predictivo, ya que no existe una variable *target* 
+
+- Se analizan interrelaciones en `\(X\)` para encontrar una estructura subyacente
+
+---
+
+class: middle
+
+## Variable Discreta: Segmentación
+
+- Encontrar subgrupos homogéneos dentro de una población, (*clusters*)
+    - Hacer una segmentación de mercado con base en features demográficos y la historia de compras de consumidores
+    - Encontrar películas similares con base en características de cada película y reviews.. 
+- Detección de patrones o anomalías en los features  
+
+---
+
+class: middle
+
+
+## Variable Continua: Factorización
+
+- Reducción de dimensionalidad 
+     - Método para disminuir el numero de features para describir el fenómeno manteniendo el el máximo contenido de información sujeto a restricción de menor dimensionalidad
+
+- Detección de patrones o anomalías en los features
+- Visualización de *high-dimensional data*
+- Paso de preprocesamiento para aprendizaje supervisado 
+
+---
+
+class: middle
+
+## Algoritmos
+
+.left[ **Segmentación**
+- K-means
+- Hierarchical Clustering
+- Latent Dirichlet Allocation
+]
+
+.left[ **Factorización**
+- Principal Component Analysis
+- Factor Analysis 
+- t-Distributed Stochastic Neighbor Embedding (t-SNE)
+]
+
+---
+
+class: middle 
+
+## Algunos Ejemplos
+
+- Wealth index (Rustein and Johnston 2004)
+- Factor Analysis vs. Fuzzy Sets Theory (Lelli 2008)
+
+---
+
+class: middle 
+
+## LDA for Topic Modeling
+
+- Cada documento es una mezcla de tópicos. Cada codumendo puede contener palabras de distintos tópicos en distintas proporciones.
+
+- Cada tópico en una mezcla de palabras.
+
+- LDA es un método matemático para estimar ambas distribuciones al mismo tiempo. Encuentra la mezcla de palabras que está asociada con cada tópico y también determina la mezcla de tópicos que describe cada documento. 
+
+.footnote[Ver *paper* seminal Blei, ... ]
+
+---
+
+class:  inverse, middle
+
+## Laboratorio *Unsupervised Learning*
+
+---
+
+class: center, middle
+
+# Gracias!
+
+Slides creadas vía R package [**xaringan**](https://github.com/yihui/xaringan).
+
+The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+---
+title: "Unsupervised Learning Examples"
+output: 
+    html_notebook:
+        fig_width: 13
+        number_sections: yes
+        toc: yes
+        toc_depth: 2
+---
+
+```{r message=FALSE, warning=FALSE, include=TRUE, results='hide'}
+## Instalamos librería 
+## install.packages('ggfortify')
+## Cargamos la librería
+library(ggfortify)
+```
+# Reducción de dimensiones: PCA 
+
+La función ```prcomp``` sólo admite una matriz numérica, a la función ```autoplot``` se le debe pasar el dataset completo con etiquetas. 
+
+```{r message=FALSE, warning=FALSE, include=TRUE}
+## Elegimos el dataset de juguete Iris de Fisher
+df <- iris[c(1, 2, 3, 4)]
+autoplot(prcomp(df))
+```
+
+
+```{r message=FALSE, warning=FALSE, include=TRUE}
+autoplot(prcomp(df), data = iris, colour = 'Species')
+```
+
+```{r message=FALSE, warning=FALSE, include=TRUE}
+autoplot(prcomp(df), data = iris, colour = 'Species', label = TRUE, label.size = 3)
+```
+
+Usando ```shape = FALSE``` elimina los puntos de la gráfica
+
+```{r message=FALSE, warning=FALSE, include=TRUE}
+autoplot(prcomp(df), data = iris, colour = 'Species', shape = FALSE, label.size = 3)
+```
+
+## Biplot Completo
+
+Etiquetas de los vectores propios con ```loadings = TRUE```
+
+```{r message=FALSE, warning=FALSE, include=TRUE}
+autoplot(prcomp(df), data = iris, colour = 'Species',
+         loadings = TRUE, loadings.colour = 'blue',
+         loadings.label = TRUE, loadings.label.size = 3) + 
+        geom_vline(xintercept=0) + geom_hline(yintercept=0)
+```
+
+## K-means
+
+```{ggfortify}``` soporta la clase de objetos ```stats::kmeans```. Se debe pasar explicitamente el dataframe de datos ya que ```kmeans``` no guarda la información original.  El resultado se colorea automáticamente por el color del clúster.
+
+```{r message=FALSE, warning=FALSE, include=TRUE}
+## Imporante para reproducir 
+set.seed(1) 
+autoplot(kmeans(USArrests, 3), data = USArrests)
+```
+
+
+Análogamente se puede personalizar a través del ** Grammar of Plots **
+
+```{r message=FALSE, warning=FALSE, include=TRUE}
+
+autoplot(kmeans(USArrests, 3), data = USArrests, label = TRUE, label.size = 3)
+```
+
+Revisar diferencias entre t-SNE y PCA : https://www.kaggle.com/puyokw/clustering-in-2-dimension-using-tsne/code
+https://blog.datascienceheroes.com/playing-with-dimensions-from-clustering-pca-t-sne-to-carl-sagan/
+
+
+## LDA 
+
+```{r message=FALSE, warning=FALSE, include=TRUE}
+#install.packages('topicmodels')
+library(topicmodels)
+data("AssociatedPress")
+```
+
+
+```{r message=FALSE, warning=FALSE, include=TRUE}
+ap_lda <- LDA(AssociatedPress, k = 2, control = list(seed = 1234))
+```
+
+## Word-topic probabilities
+
+Introducimos ```tidytext```
+
+Extraemos las probabilidades de generación para cada palabra de cada tópico, llamada usualemnte $\beta$ en el modelo usual.
+
+```{r message=FALSE, warning=FALSE, include=TRUE}
+install.packages('tidytext')
+library(tidytext)
+
+ap_topics <- tidy(ap_lda, matrix = "beta")
+ap_topics
+```
+La funciones de tidyfication la convierten en un formato *one-topic-per-term-per-row*. Para cada combinación el modelo cálcula la probabilidad de que cada palabra sea generada por ese tópico. 
+
+Por ejemplo, la palabra "aaron" tiene 
+ - Probabilidad de $1.6869×10{-12}$ de ser generada por el tópico 1
+ - Probabilidad de $3.89594×10^{-5}$ de ser generada por el tópico 2.
+ 
+```{r message=FALSE, warning=FALSE, include=TRUE}
+## Usamos dplyr para obtener las 10 palabras más comunes para cada tópico.
+
+library(ggplot2)
+library(dplyr)
+
+ap_top_terms <- ap_topics %>%
+  group_by(topic) %>%
+  top_n(10, beta) %>%
+  ungroup() %>%
+  arrange(topic, -beta)
+
+ap_top_terms %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ topic, scales = "free") +
+  coord_flip()
+```
+
+
+- Tópico 1: “percent”, “million”, “billion”, “company”, sugiere como tema "business or financial news".
+
+- Tópico 2: “president”, “government”, “soviet” sugiere como tema "political news". 
+
+- "new" "people" aparecen son comúnes en ambos tópicos, lo cual es una diferencia contra los métodos de clusterización traicionales. 
+
+
+Seguimos una alternativa buscando la máxima diferencia entre tópico 1 y tópico 2, es decir el coeficiente $\log_2( \beta_2/ \beta_1)$ y los ordenamos. 
+
+```{r message=FALSE, warning=FALSE, include=TRUE}
+library(tidyr)
+
+beta_spread <- ap_topics %>%
+  mutate(topic = paste0("topic", topic)) %>%
+  spread(topic, beta) %>%
+  filter(topic1 > .001 | topic2 > .001) %>%
+  mutate(log_ratio = log2(topic2 / topic1)) %>% filter(abs(log_ratio) > 10)
+
+#sample_n(beta_spread,30)
+ggplot(beta_spread,aes(x = reorder(term, log_ratio), y = log_ratio)) + geom_bar(stat = "identity") + coord_flip()
+
+```
+
+Acá se nota que los valores negativos denotan el tópico 1 y el tópico 2 para valores positivos. 
+
+## Document-topic probabilities
+
+Además se puede analizar per-document-per-topic probabilities, llamada $\gamma$. Muestra la proporción de palabras generadas por cada tópico para cada documento. 
+
+```{r message=FALSE, warning=FALSE, include=TRUE}
+
+ap_documents <- tidy(ap_lda, matrix = "gamma")
+ap_documents
+
+```
+
+En particular analizando un documento .... se puede ver el contenido (relacion entre US Gov y el dictador Panameño) con lo cual se verfica que el modelo acertó. 
+
+```{r message=FALSE, warning=FALSE, include=TRUE}
+tidy(AssociatedPress) %>%
+  filter(document == 6) %>%
+  arrange(desc(count))
+```
+
